@@ -1,0 +1,5 @@
+order_id,customer_id,order_date,amount,payment_mode
+101,1,8/1/25,100,online
+102,3,8/4/25,200,upi
+103,2,8/3/25,150,online
+104,4,8/2/25,250,upi
