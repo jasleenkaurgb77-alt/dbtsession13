@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: raw_orders
+    columns:
+      - name: payment_mode
+        description: "The unique identifier for each order"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "The ID of the customer who placed the order"
+
+      - name: payment_mode
+        tests:
+          - accepted_values:
+              values: ['online', 'cash']
+

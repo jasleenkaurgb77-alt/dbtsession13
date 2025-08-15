@@ -1,9 +1,15 @@
 {{ config(
-    materialized='table',
-    ) }}
+    materialized='table'
+) }}
 
-with cte_customers as (
-    select * from  SESSION12.BRONZE.RAW_orders
+with cte_orders as (
+    select *
+    from SESSION12.BRONZE.RAW_ORDERS
 )
 
-select * from cte_customers
+select 
+    order_id
+    customerid,
+    try_to_date(order_date) as order_date, amount
+from cte_orders
+
