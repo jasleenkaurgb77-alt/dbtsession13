@@ -1,9 +1,18 @@
+
 {{ config(
-    materialized='table',
-    ) }}
+    materialized='table'
+) }}
 
 with cte_customers as (
-    select * from  SESSION12.BRONZE.RAW_CUSTOMERS
+    select *
+    from SESSION12.BRONZE.RAW_CUSTOMERS
 )
 
-select * from cte_customers
+select 
+    customerid,
+    initcap(name) as name,  -- use initcap in Snowflake instead of init()
+    case 
+        when age > 18 then 'Adult'
+        else 'Minor' 
+    end as age_group
+from cte_customers
